@@ -49,7 +49,7 @@ namespace UnitTests
             var target = new AfternoonSession();
             target.AddTalk(talk1);
             // Act
-            var output = target.CheckNetworking();
+            var output = target.CheckAdditionalConstraint();
             // Assert
             Assert.True(output);
         }
@@ -63,7 +63,7 @@ namespace UnitTests
             var target = new AfternoonSession();
             target.AddTalk(talk1);
             // Act
-            var output = target.CheckNetworking();
+            var output = target.CheckAdditionalConstraint();
             // Assert
             Assert.True(output);
         }
@@ -77,7 +77,7 @@ namespace UnitTests
             var target = new AfternoonSession();
             target.AddTalk(talk1);
             // Act
-            var output = target.CheckNetworking();
+            var output = target.CheckAdditionalConstraint();
             // Assert
             Assert.False(output);
         }

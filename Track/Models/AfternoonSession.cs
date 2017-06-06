@@ -13,9 +13,10 @@ namespace Track.Models
             // 9AM
             StartTime = new DateTime(2017, 6, 6, 13, 0, 0, 0);
             MaxEndTime = new DateTime(2017, 6, 6, 17, 0, 0, 0);
+            AvailableMinutes = MaxEndTime.Subtract(StartTime).Minutes;
         }
 
-        public bool CheckNetworking()
+        public override bool CheckAdditionalConstraint()
         {
             var end = StartTime.AddMinutes(TotalDuration);
             if (end >= MinNetworkingTime) return true;

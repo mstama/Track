@@ -11,6 +11,12 @@ namespace Track.Models
             // 9AM
             StartTime = new DateTime(2017,6,6,9,0,0,0);
             MaxEndTime = new DateTime(2017, 6, 6, 12, 0, 0, 0);
+            AvailableMinutes = MaxEndTime.Subtract(StartTime).Minutes;
+        }
+
+        public override bool CheckAdditionalConstraint()
+        {
+            return true;
         }
     }
 }

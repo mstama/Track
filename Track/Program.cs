@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Track.Interfaces;
+using Track.Models;
 using Track.Parsers;
 
 namespace Track
@@ -8,11 +10,13 @@ namespace Track
     class Program
     {
         private static ITalkParser _parser;
+        private static ISessionsBuilder _sessionBuilder;
 
         // Composition root
         private static void Init()
         {
             _parser = new TalkParser();
+            _sessionBuilder = new SessionsBuilder();
         }
 
         static void Main(string[] args)
@@ -28,13 +32,20 @@ namespace Track
             if (!File.Exists(filePath)) Console.WriteLine("File does not exist!");
             Console.WriteLine("Processing file {0}.", args[0]);
             var lines = File.ReadLines(filePath);
+            List<Talk> talks = new List<Talk>();
+
 
             foreach (var line in lines)
             {
                 var talk = _parser.Parse(line);
+                talks.Add(talk);
                 Console.WriteLine(talk);
             }
-
+            var sessions = _sessionBuilder.Build(talks);
+            foreach(var session in sessions)
+            {
+                Console.WriteLine(session);
+            }
 
             Console.ReadLine();
         }
