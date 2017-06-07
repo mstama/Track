@@ -9,9 +9,36 @@ namespace Track.Models
     {
         protected List<Talk> Talks { get; } = new List<Talk>();
         public int TotalDuration { get; protected set; } = 0;
-        public int AvailableMinutes { get; protected set; } = 0;
+        public int AvailableMinutes
+        {
+            get
+            {
+                return EndTime.Subtract(StartTime).Minutes - TotalDuration;
+            }
+        }
+        public int AvailableMinutesExtended
+        {
+            get
+            {
+                return EndTimeExtended.Subtract(StartTime).Minutes - TotalDuration;
+            }
+        }
         public DateTime StartTime { get; protected set; }
-        public DateTime MaxEndTime { get; protected set; }
+        public DateTime EndTime { get; protected set; }
+        public DateTime EndTimeExtended { get; protected set; }
+
+
+        protected Session(DateTime startTime, DateTime endTime, DateTime endTimeExtended)
+        {
+            StartTime = startTime;
+            EndTime = endTime;
+            EndTimeExtended = endTimeExtended;
+        }
+
+        protected Session(DateTime startTime, DateTime endTime):this(startTime, endTime,endTime){
+
+        }
+
 
         public bool AddTalk(Talk talk)
         {
@@ -19,7 +46,6 @@ namespace Track.Models
             {
                 Talks.Add(talk);
                 TotalDuration += talk.Duration;
-                AvailableMinutes -= talk.Duration;
                 return true;
             }
             else return false;
@@ -28,18 +54,9 @@ namespace Track.Models
         protected bool CheckConstraint(Talk talk)
         {
             var end = StartTime.AddMinutes(TotalDuration + talk.Duration);
-            if (end <= MaxEndTime) return true;
+            if (end <= EndTime) return true;
             return false;
         }
-
-        public bool SessionFull()
-        {
-            var end = StartTime.AddMinutes(TotalDuration );
-            if (end == MaxEndTime) return true;
-            return false;
-        }
-
-        public abstract bool CheckAdditionalConstraint();
 
         public Talk ReturnLast()
         {

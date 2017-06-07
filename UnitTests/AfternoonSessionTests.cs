@@ -39,7 +39,7 @@ namespace UnitTests
             Assert.False(output);
             Assert.Equal<int>(240, target.TotalDuration);
         }
-
+        /*
         [Fact]
         [Trait("Category", Category)]
         public void ValidCheckNetworkingTalk()
@@ -81,5 +81,6 @@ namespace UnitTests
             // Assert
             Assert.False(output);
         }
+        */
     }
 }
