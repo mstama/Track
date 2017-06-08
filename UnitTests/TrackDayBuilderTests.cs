@@ -27,6 +27,33 @@ namespace UnitTests
             Assert.Equal<int>(1, output.Count);
         }
 
+        [Fact]
+        [Trait("Category", Category)]
+        public void TestBuildExtended()
+        {
+            // Arrange
+            var talks = BuildTalks(14, 30);
+
+            // Act
+            var output = target.Build(talks);
+
+            // Assert
+            Assert.Equal<int>(1, output.Count);
+        }
+
+        [Fact]
+        [Trait("Category", Category)]
+        public void TestBuildExtended2()
+        {
+            // Arrange
+            var talks = BuildTalks(28, 30);
+
+            // Act
+            var output = target.Build(talks);
+
+            // Assert
+            Assert.Equal<int>(2, output.Count);
+        }
 
         private IList<Talk> BuildTalks(int count, int duration)
         {

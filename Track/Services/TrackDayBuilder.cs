@@ -24,32 +24,44 @@ namespace Track.Services
                 do
                 {
                     var session = morning ? day.Morning : (Session)day.Afternoon;
-                    while (session.AddTalk(talks.FirstOrDefault()))
-                    {
-                        talks.RemoveAt(0);
-                    }
-
-                    // There is time available 
-                    while (session.AvailableMinutes > 0)
-                    {
-                        // Find a session to fill the remainer slot
-                        var equalLessTime = talks.SingleOrDefault(t => t.Duration == session.AvailableMinutes) ?? talks.SingleOrDefault(t => t.Duration < session.AvailableMinutes);
-                        if (equalLessTime != null)
-                        {
-                            session.AddTalk(equalLessTime);
-                            talks.Remove(equalLessTime);
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
+                    FillSlots(talks, session, false);
                     morning = !morning;
                 } while (!morning);
                 trackDays.Add(day);
                 //Have to deal with extended.
+                if (talks.Sum(t => t.Duration) <= trackDays.Sum(t => t.Afternoon.CalculatedAvailableMinutes(true)))
+                {
+                    foreach (var trakDay in trackDays)
+                    {
+                        FillSlots(talks, trakDay.Afternoon, true);
+                    }
+                }
             }
             return trackDays;
+        }
+
+        private static void FillSlots(IList<Talk> talks, Session session, bool extended)
+        {
+            while (session.AddTalk(talks.FirstOrDefault(), extended))
+            {
+                talks.RemoveAt(0);
+            }
+
+            // There is time available 
+            while (session.CalculatedAvailableMinutes(extended) > 0)
+            {
+                // Find a session to fill the remainer slot
+                var equalLessTime = talks.SingleOrDefault(t => t.Duration == session.CalculatedAvailableMinutes(extended)) ?? talks.SingleOrDefault(t => t.Duration < session.CalculatedAvailableMinutes(extended));
+                if (equalLessTime != null)
+                {
+                    session.AddTalk(equalLessTime, extended);
+                    talks.Remove(equalLessTime);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
     }
 }

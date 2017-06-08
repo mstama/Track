@@ -38,14 +38,24 @@ namespace Track.Models
         public int TotalDuration { get; private set; }
         protected IList<Talk> Talks { get; } = new ObservableCollection<Talk>();
 
-        public bool AddTalk(Talk talk)
+        public bool AddTalk(Talk talk, bool extended)
         {
-            if (CheckConstraint(talk))
+            if (CheckConstraint(talk, extended))
             {
                 Talks.Add(talk);
                 return true;
             }
             return false;
+        }
+
+        public bool AddTalk(Talk talk)
+        {
+            return AddTalk(talk, false);
+        }
+
+        public int CalculatedAvailableMinutes(bool extended)
+        {
+            return extended ? AvailableMinutesExtended : AvailableMinutes;
         }
 
         public Talk ReturnLast()
@@ -68,12 +78,11 @@ namespace Track.Models
             return text.ToString();
         }
 
-        protected bool CheckConstraint(Talk talk)
+        protected bool CheckConstraint(Talk talk, bool extended)
         {
             if (talk == null) return false;
             var end = StartTime.AddMinutes(TotalDuration + talk.Duration);
-            if (end <= EndTime) return true;
-            return false;
+            return extended ? end <= EndTimeExtended : end <= EndTime;
         }
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
