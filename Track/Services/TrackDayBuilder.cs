@@ -15,11 +15,13 @@ namespace Track.Services
             List<TrackDay> trackDays = new List<TrackDay>();
             // Better fitting
             talks = talks.OrderByDescending(t => t.Duration).ToList();
+            int trackNumber = 0;
             // While there are talks...
             while (talks.Count > 0)
             {
                 // Create track day
-                TrackDay day = new TrackDay();
+                trackNumber++;
+                TrackDay day = new TrackDay(trackNumber.ToString());
                 bool morning = true;
                 do
                 {
@@ -31,9 +33,9 @@ namespace Track.Services
                 //Have to deal with extended.
                 if (talks.Sum(t => t.Duration) <= trackDays.Sum(t => t.Afternoon.CalculatedAvailableMinutes(true)))
                 {
-                    foreach (var trakDay in trackDays)
+                    foreach (var trackDay in trackDays)
                     {
-                        FillSlots(talks, trakDay.Afternoon, true);
+                        FillSlots(talks, trackDay.Afternoon, true);
                     }
                 }
             }
