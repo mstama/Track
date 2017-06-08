@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Text;
 
 namespace Track.Models
@@ -14,28 +13,20 @@ namespace Track.Models
             StartTime = startTime;
             EndTime = endTime;
             EndTimeExtended = endTimeExtended;
-
             AvailableMinutes = (int)EndTime.Subtract(StartTime).TotalMinutes;
-
             AvailableMinutesExtended = (int)EndTimeExtended.Subtract(StartTime).TotalMinutes;
-
             var collection = (ObservableCollection<Talk>)Talks;
-
             collection.CollectionChanged += OnCollectionChanged;
         }
 
-        protected Session(DateTime startTime, DateTime endTime) : this(startTime, endTime, endTime)
-        {
-        }
-
-        public int AvailableMinutes { get; private set; }
-
-        public int AvailableMinutesExtended { get; private set; }
+        protected Session(DateTime startTime, DateTime endTime) : this(startTime, endTime, endTime) { }
 
         public DateTime EndTime { get; protected set; }
         public DateTime EndTimeExtended { get; protected set; }
         public DateTime StartTime { get; protected set; }
         public int TotalDuration { get; private set; }
+        protected int AvailableMinutes { get; private set; }
+        protected int AvailableMinutesExtended { get; private set; }
         protected IList<Talk> Talks { get; } = new ObservableCollection<Talk>();
 
         public bool AddTalk(Talk talk, bool extended)
@@ -56,14 +47,6 @@ namespace Track.Models
         public int CalculatedAvailableMinutes(bool extended)
         {
             return extended ? AvailableMinutesExtended : AvailableMinutes;
-        }
-
-        public Talk ReturnLast()
-        {
-            var last = Talks.LastOrDefault();
-            if (Talks.Count > 0)
-                Talks.RemoveAt(Talks.Count - 1);
-            return last;
         }
 
         public override string ToString()

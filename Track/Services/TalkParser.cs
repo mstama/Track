@@ -21,9 +21,8 @@ namespace Track.Services
 
             // Last one is the length
             string textDuration = words.Last();
-            int duration = 0;
-            if (textDuration == _lightning) duration = 15;
-            else duration=int.Parse(textDuration.Replace(_min,""));
+            int duration = textDuration == _lightning ? 15 : int.Parse(textDuration.Replace(_min, ""));
+
             return new Talk() { Title = title, Duration = duration };
         }
     }

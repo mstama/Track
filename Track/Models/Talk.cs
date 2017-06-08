@@ -11,22 +11,7 @@ namespace Track.Models
 
         public override string ToString()
         {
-            if(Duration!=15) return string.Format("{0} {1}min", Title, Duration);
-            else return string.Format("{0} lightning", Title, Duration);
-        }
-
-        public static bool operator <(Talk a, Talk b)
-        {
-            if (b == null) return false;
-            if (a == null) return true;
-            return a.Duration < b.Duration;
-        }
-
-        public static bool operator >(Talk a, Talk b)
-        {
-            if (a == null) return false;
-            if (b == null) return true;
-            return a.Duration > b.Duration;
+            return Duration != 15?string.Format("{0} {1}min", Title, Duration):string.Format("{0} lightning", Title, Duration);
         }
     }
 }
