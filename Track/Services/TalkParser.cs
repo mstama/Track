@@ -5,7 +5,7 @@ using Track.Models;
 using Track.Interfaces;
 using System.Linq;
 
-namespace Track.Parsers
+namespace Track.Services
 {
     public class TalkParser : ITalkParser
     {

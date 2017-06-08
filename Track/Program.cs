@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using Track.Interfaces;
 using Track.Models;
-using Track.Parsers;
+using Track.Services;
 
 namespace Track
 {
     class Program
     {
         private static ITalkParser _parser;
-        private static ISessionsBuilder _sessionBuilder;
+        private static ITrackDayBuilder _sessionBuilder;
 
         // Composition root
         private static void Init()
         {
             _parser = new TalkParser();
-            _sessionBuilder = new SessionsBuilder();
+            _sessionBuilder = new TrackDayBuilder();
         }
 
         static void Main(string[] args)

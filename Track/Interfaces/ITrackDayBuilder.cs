@@ -5,8 +5,8 @@ using Track.Models;
 
 namespace Track.Interfaces
 {
-    interface ISessionsBuilder
+    interface ITrackDayBuilder
     {
-        IList<Session> Build(IList<Talk> talks);
+        IList<TrackDay> Build(IList<Talk> talks);
     }
 }
