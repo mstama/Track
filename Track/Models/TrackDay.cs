@@ -1,21 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Track.Models
+﻿namespace Track.Models
 {
+    /// <summary>
+    /// Represents a track day
+    /// </summary>
     public class TrackDay
     {
-        public MorningSession Morning { get; set; } = new MorningSession();
-        public AfternoonSession Afternoon { get; set; } = new AfternoonSession();
-        public string Name { get; set; }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public TrackDay() { }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name"></param>
         public TrackDay(string name) : this()
         {
             Name = name;
         }
+
+        /// <summary>
+        /// Afternoon session of a track day
+        /// </summary>
+        public AfternoonSession Afternoon { get; set; } = new AfternoonSession();
+
+        /// <summary>
+        /// Morning session of track day
+        /// </summary>
+        public MorningSession Morning { get; set; } = new MorningSession();
+
+        /// <summary>
+        /// Track name
+        /// </summary>
+        public string Name { get; set; }
 
         public override string ToString()
         {

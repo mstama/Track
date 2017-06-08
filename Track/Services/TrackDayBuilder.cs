@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Track.Interfaces;
 using Track.Models;
-using System.Linq;
 
 namespace Track.Services
 {
+    /// <summary>
+    /// Track builder
+    /// </summary>
     public class TrackDayBuilder : ITrackDayBuilder
     {
-
+        /// <summary>
+        /// Receives a list of talks and return a list of track days
+        /// </summary>
+        /// <param name="talks"></param>
+        /// <returns></returns>
         public IList<TrackDay> Build(IList<Talk> talks)
         {
             List<TrackDay> trackDays = new List<TrackDay>();
@@ -42,6 +47,12 @@ namespace Track.Services
             return trackDays;
         }
 
+        /// <summary>
+        /// Fill slots in a given session
+        /// </summary>
+        /// <param name="talks"></param>
+        /// <param name="session"></param>
+        /// <param name="extended">Should use extended time</param>
         private static void FillSlots(IList<Talk> talks, Session session, bool extended)
         {
             while (session.AddTalk(talks.FirstOrDefault(), extended))
@@ -49,7 +60,7 @@ namespace Track.Services
                 talks.RemoveAt(0);
             }
 
-            // There is time available 
+            // There is time available
             while (session.CalculatedAvailableMinutes(extended) > 0)
             {
                 // Find a session to fill the remainer slot

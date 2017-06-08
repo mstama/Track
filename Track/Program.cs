@@ -39,15 +39,12 @@ namespace Track
             {
                 var talk = _parser.Parse(line);
                 talks.Add(talk);
-                Console.WriteLine(talk);
             }
             var sessions = _sessionBuilder.Build(talks);
             foreach(var session in sessions)
             {
                 Console.WriteLine(session);
             }
-
-            Console.ReadLine();
         }
     }
 }

@@ -1,23 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Track.Models;
-using Track.Interfaces;
 using System.Linq;
+using Track.Interfaces;
+using Track.Models;
 
 namespace Track.Services
 {
+    /// <summary>
+    /// Parser for talks
+    /// </summary>
     public class TalkParser : ITalkParser
     {
-        private static readonly char[] _separator = { ' ' };
         private const string _lightning = "lightning";
         private const string _min = "min";
+        private static readonly char[] _separator = { ' ' };
 
+        /// <summary>
+        /// Parse a text and return a talk
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public Talk Parse(string text)
         {
             string[] words = text.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
             // Title
-            string title = string.Join(" ",words.Take(words.Length - 1));
+            string title = string.Join(" ", words.Take(words.Length - 1));
 
             // Last one is the length
             string textDuration = words.Last();
