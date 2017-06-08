@@ -3,7 +3,13 @@
 ### How to build
 
 * [Install](https://www.microsoft.com/net/download/core#/current) .NET Core 1.1 
-* In the project folder, where the **Track.csproj** is, execute the following command: 
+* Restore the packages **(required once)**. In the solution folder, where **Track.sln** is, folder execute the followin command:
+
+```
+dotnet restore
+```
+
+* In the project folder, where **Track.csproj** is, execute the following command: 
 
 ```
 dotnet build -c release
