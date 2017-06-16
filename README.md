@@ -51,7 +51,7 @@ The solution is composed of:
 The main program is composed of:
 
 * Composition Root: where all modules are put together.
-* Execution of the command parser.
+* Execution of the talk parser.
 * Execution of the track builder.
 
 Highlights:
