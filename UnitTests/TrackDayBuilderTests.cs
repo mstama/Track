@@ -58,7 +58,7 @@ namespace UnitTests
             List<Talk> talks = new List<Talk>(count);
             for (int i = 0; i < count; i++)
             {
-                talks.Add(new Talk() { Title = string.Format("Title {0}", i), Duration = duration });
+                talks.Add(new Talk(string.Format("Title {0}", i), duration));
             }
             return talks;
         }

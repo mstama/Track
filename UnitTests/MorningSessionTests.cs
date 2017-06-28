@@ -12,8 +12,8 @@ namespace UnitTests
         public void InvalidAddTalk()
         {
             // Arrange
-            var talk1 = new Talk() { Title = "session 1", Duration = 180 };
-            var talk2 = new Talk() { Title = "session 2", Duration = 1 };
+            var talk1 = new Talk("session 1", 180);
+            var talk2 = new Talk("session 2", 1);
             var target = new MorningSession();
             target.AddTalk(talk1);
             // Act
@@ -28,7 +28,7 @@ namespace UnitTests
         public void ValidAddTalk()
         {
             // Arrange
-            var talk1 = new Talk() { Title = "session 1", Duration = 180 };
+            var talk1 = new Talk("session 1", 180) ;
             var target = new MorningSession();
             // Act
             var output = target.AddTalk(talk1);

@@ -29,7 +29,7 @@ namespace Track.Services
             string textDuration = words.Last();
             int duration = textDuration == _lightning ? 15 : int.Parse(textDuration.Replace(_min, ""));
 
-            return new Talk() { Title = title, Duration = duration };
+            return new Talk(title, duration);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Track
         // Composition root
         private static void Init()
         {
-            _parser = new TalkParser();
+            _parser = new TalkRegexParser();
             _sessionBuilder = new TrackDayBuilder();
         }
 
