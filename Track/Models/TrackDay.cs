@@ -6,6 +6,21 @@
     public class TrackDay
     {
         /// <summary>
+        /// Afternoon session of a track day
+        /// </summary>
+        public AfternoonSession Afternoon { get; } = new AfternoonSession();
+
+        /// <summary>
+        /// Morning session of track day
+        /// </summary>
+        public MorningSession Morning { get; } = new MorningSession();
+
+        /// <summary>
+        /// Track name
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public TrackDay() { }
@@ -14,25 +29,10 @@
         /// Constructor
         /// </summary>
         /// <param name="name"></param>
-        public TrackDay(string name) : this()
+        public TrackDay(string name)
         {
             Name = name;
         }
-
-        /// <summary>
-        /// Afternoon session of a track day
-        /// </summary>
-        public AfternoonSession Afternoon { get; set; } = new AfternoonSession();
-
-        /// <summary>
-        /// Morning session of track day
-        /// </summary>
-        public MorningSession Morning { get; set; } = new MorningSession();
-
-        /// <summary>
-        /// Track name
-        /// </summary>
-        public string Name { get; set; }
 
         public override string ToString()
         {

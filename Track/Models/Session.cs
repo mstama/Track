@@ -12,6 +12,41 @@ namespace Track.Models
     public abstract class Session
     {
         /// <summary>
+        /// Sum of all talks duration
+        /// </summary>
+        public int TotalDuration { get; private set; }
+
+        /// <summary>
+        /// Available minutes in session
+        /// </summary>
+        protected int AvailableMinutes { get; private set; }
+
+        /// <summary>
+        /// Available extended minutes in session
+        /// </summary>
+        protected int AvailableMinutesExtended { get; private set; }
+
+        /// <summary>
+        /// Session end time
+        /// </summary>
+        protected DateTime EndTime { get; set; }
+
+        /// <summary>
+        /// Session extended end time Time that the session can go if not finished until end time
+        /// </summary>
+        protected DateTime EndTimeExtended { get; set; }
+
+        /// <summary>
+        /// Session start time
+        /// </summary>
+        protected DateTime StartTime { get; set; }
+
+        /// <summary>
+        /// List of talks in a session
+        /// </summary>
+        protected IList<Talk> Talks { get; } = new ObservableCollection<Talk>();
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="startTime"></param>
@@ -36,47 +71,11 @@ namespace Track.Models
         protected Session(DateTime startTime, DateTime endTime) : this(startTime, endTime, endTime) { }
 
         /// <summary>
-        /// Sum of all talks duration
-        /// </summary>
-        public int TotalDuration { get; private set; }
-
-        /// <summary>
-        /// Available minutes in session
-        /// </summary>
-        protected int AvailableMinutes { get; private set; }
-
-        /// <summary>
-        /// Available extended minutes in session
-        /// </summary>
-        protected int AvailableMinutesExtended { get; private set; }
-
-        /// <summary>
-        /// Session end time
-        /// </summary>
-        protected DateTime EndTime { get; set; }
-
-        /// <summary>
-        /// Session extended end time
-        /// Time that the session can go if not finished until end time
-        /// </summary>
-        protected DateTime EndTimeExtended { get; set; }
-
-        /// <summary>
-        /// Session start time
-        /// </summary>
-        protected DateTime StartTime { get; set; }
-
-        /// <summary>
-        /// List of talks in a session
-        /// </summary>
-        protected IList<Talk> Talks { get; } = new ObservableCollection<Talk>();
-
-        /// <summary>
         /// Add talks to session if time is available
         /// </summary>
         /// <param name="talk"></param>
         /// <param name="extended">Should consider extended time</param>
-        /// <returns></returns>
+        /// <returns>Add was succesful</returns>
         public bool AddTalk(Talk talk, bool extended)
         {
             if (CheckConstraint(talk, extended))
@@ -88,8 +87,7 @@ namespace Track.Models
         }
 
         /// <summary>
-        /// Add talks to session if time is available
-        /// It does not consider extended time
+        /// Add talks to session if time is available It does not consider extended time
         /// </summary>
         /// <param name="talk"></param>
         /// <returns></returns>
@@ -136,9 +134,7 @@ namespace Track.Models
         /// <summary>
         /// Updates statistics whether collection is changed
         /// </summary>
-        /// <remarks>
-        /// It does not handle deletes.
-        /// </remarks>
+        /// <remarks>It does not handle deletes.</remarks>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
