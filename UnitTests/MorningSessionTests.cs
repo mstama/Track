@@ -1,31 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Track.Models;
+﻿using Track.Models;
 using Xunit;
 
 namespace UnitTests
 {
     public class MorningSessionTests
     {
-        private const string Category = "MorningSession";
+        private const string _category = "MorningSession";
 
         [Fact]
-        [Trait("Category", Category)]
-        public void ValidAddTalk()
-        {
-            // Arrange
-            var talk1 = new Talk() { Title = "session 1", Duration = 180 };
-            var target = new MorningSession();
-            // Act
-            var output = target.AddTalk(talk1);
-            // Assert
-            Assert.True(output);
-            Assert.Equal<int>(180, target.TotalDuration);
-        }
-
-        [Fact]
-        [Trait("Category", Category)]
+        [Trait("Category", _category)]
         public void InvalidAddTalk()
         {
             // Arrange
@@ -37,6 +20,20 @@ namespace UnitTests
             var output = target.AddTalk(talk2);
             // Assert
             Assert.False(output);
+            Assert.Equal<int>(180, target.TotalDuration);
+        }
+
+        [Fact]
+        [Trait("Category", _category)]
+        public void ValidAddTalk()
+        {
+            // Arrange
+            var talk1 = new Talk() { Title = "session 1", Duration = 180 };
+            var target = new MorningSession();
+            // Act
+            var output = target.AddTalk(talk1);
+            // Assert
+            Assert.True(output);
             Assert.Equal<int>(180, target.TotalDuration);
         }
     }

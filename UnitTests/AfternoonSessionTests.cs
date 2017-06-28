@@ -1,45 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Track.Models;
+﻿using Track.Models;
 using Xunit;
 
 namespace UnitTests
 {
     public class AfternoonSessionTests
     {
-        private const string Category = "AfternoonSession";
+        private const string _category = "AfternoonSession";
 
         [Fact]
-        [Trait("Category", Category)]
-        public void ValidAddTalkExtended()
-        {
-            // Arrange
-            var talk1 = new Talk() { Title = "session 1", Duration = 240 };
-            var target = new AfternoonSession();
-            // Act
-            var output = target.AddTalk(talk1,true);
-            // Assert
-            Assert.True(output);
-            Assert.Equal<int>(240, target.TotalDuration);
-        }
-
-        [Fact]
-        [Trait("Category", Category)]
-        public void ValidAddTalkNotExtended()
-        {
-            // Arrange
-            var talk1 = new Talk() { Title = "session 1", Duration = 180 };
-            var target = new AfternoonSession();
-            // Act
-            var output = target.AddTalk(talk1, false);
-            // Assert
-            Assert.True(output);
-            Assert.Equal<int>(180, target.TotalDuration);
-        }
-
-        [Fact]
-        [Trait("Category", Category)]
+        [Trait("Category", _category)]
         public void InvalidAddTalk()
         {
             // Arrange
@@ -55,7 +24,7 @@ namespace UnitTests
         }
 
         [Fact]
-        [Trait("Category", Category)]
+        [Trait("Category", _category)]
         public void InvalidAddTalkExtended()
         {
             // Arrange
@@ -68,6 +37,34 @@ namespace UnitTests
             // Assert
             Assert.False(output);
             Assert.Equal<int>(240, target.TotalDuration);
+        }
+
+        [Fact]
+        [Trait("Category", _category)]
+        public void ValidAddTalkExtended()
+        {
+            // Arrange
+            var talk1 = new Talk() { Title = "session 1", Duration = 240 };
+            var target = new AfternoonSession();
+            // Act
+            var output = target.AddTalk(talk1, true);
+            // Assert
+            Assert.True(output);
+            Assert.Equal<int>(240, target.TotalDuration);
+        }
+
+        [Fact]
+        [Trait("Category", _category)]
+        public void ValidAddTalkNotExtended()
+        {
+            // Arrange
+            var talk1 = new Talk() { Title = "session 1", Duration = 180 };
+            var target = new AfternoonSession();
+            // Act
+            var output = target.AddTalk(talk1, false);
+            // Assert
+            Assert.True(output);
+            Assert.Equal<int>(180, target.TotalDuration);
         }
     }
 }
