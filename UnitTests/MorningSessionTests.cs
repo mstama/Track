@@ -28,7 +28,7 @@ namespace UnitTests
         public void ValidAddTalk()
         {
             // Arrange
-            var talk1 = new Talk("session 1", 180) ;
+            var talk1 = new Talk("session 1", 180);
             var target = new MorningSession();
             // Act
             var output = target.AddTalk(talk1);
