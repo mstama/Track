@@ -4,10 +4,11 @@ using System.IO;
 using Track.Interfaces;
 using Track.Models;
 using Track.Services;
+using Track.Extensions;
 
 namespace Track
 {
-    class Program
+    internal class Program
     {
         private static ITalkParser _parser;
         private static ITrackDayBuilder _sessionBuilder;
@@ -19,7 +20,7 @@ namespace Track
             _sessionBuilder = new TrackDayBuilder();
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Init();
 
@@ -34,14 +35,14 @@ namespace Track
             var lines = File.ReadLines(filePath);
             List<Talk> talks = new List<Talk>();
 
-
             foreach (var line in lines)
             {
                 var talk = _parser.Parse(line);
-                talks.Add(talk);
+                // Check returned talk
+                talks.AddCheck(talk);
             }
             var sessions = _sessionBuilder.Build(talks);
-            foreach(var session in sessions)
+            foreach (var session in sessions)
             {
                 Console.WriteLine(session);
             }

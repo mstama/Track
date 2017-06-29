@@ -2,6 +2,7 @@
 using System.Linq;
 using Track.Interfaces;
 using Track.Models;
+using Track.Extensions;
 
 namespace Track.Services
 {
@@ -22,7 +23,7 @@ namespace Track.Services
             talks = talks.OrderByDescending(t => t.Duration).ToList();
             int trackNumber = 0;
             // While there are talks...
-            while (talks.Count > 0)
+            while (talks.NotEmpty())
             {
                 // Create track day
                 trackNumber++;

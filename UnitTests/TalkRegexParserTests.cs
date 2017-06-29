@@ -6,8 +6,20 @@ namespace UnitTests
     public class TalkRegexParserTests
     {
         private const string _category = "TalkRegexParser";
-
         private readonly TalkRegexParser _target = new TalkRegexParser();
+
+        [Fact]
+        [Trait("Category", _category)]
+        public void ParseEmpty()
+        {
+            // Arrange
+            string input = " ";
+            // Act
+            var output = _target.Parse(input);
+            // Assert
+            Assert.Equal(-1, output.Duration);
+            Assert.Equal("", output.Title);
+        }
 
         [Fact]
         [Trait("Category", _category)]

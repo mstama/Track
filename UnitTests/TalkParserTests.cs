@@ -6,8 +6,20 @@ namespace UnitTests
     public class TalkParserTests
     {
         private const string _category = "TalkParser";
-
         private readonly TalkParser _target = new TalkParser();
+
+        [Fact]
+        [Trait("Category", _category)]
+        public void ParseEmpty()
+        {
+            // Arrange
+            string input = " ";
+            // Act
+            var output = _target.Parse(input);
+            // Assert
+            Assert.Equal(-1, output.Duration);
+            Assert.Equal("", output.Title);
+        }
 
         [Fact]
         [Trait("Category", _category)]
