@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Track.Extensions;
 using Track.Interfaces;
 using Track.Models;
 
@@ -27,7 +28,7 @@ namespace Track.Services
 
             // Last one is the length
             string textDuration = words.Last();
-            int duration = textDuration == _lightning ? 15 : int.Parse(textDuration.Replace(_min, ""));
+            int duration = textDuration.Equals(_lightning, StringComparison.OrdinalIgnoreCase) ? 15 : int.Parse(textDuration.ReplaceInsensitive(_min, ""));
 
             return new Talk(title, duration);
         }
