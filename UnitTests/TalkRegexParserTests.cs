@@ -24,6 +24,19 @@ namespace UnitTests
 
         [Fact]
         [Trait("Category", _category)]
+        public void ParseLightningUpper()
+        {
+            // Arrange
+            string input = "RAILS FOR PYTHON DEVELOPERS LIGHTNING";
+            // Act
+            var output = _target.Parse(input);
+            // Assert
+            Assert.Equal(15, output.Duration);
+            Assert.Equal("RAILS FOR PYTHON DEVELOPERS", output.Title);
+        }
+
+        [Fact]
+        [Trait("Category", _category)]
         public void ParseMinutes()
         {
             // Arrange
@@ -33,6 +46,19 @@ namespace UnitTests
             // Assert
             Assert.Equal(20, output.Duration);
             Assert.Equal("Rails for Python Developers", output.Title);
+        }
+
+        [Fact]
+        [Trait("Category", _category)]
+        public void ParseMinutesUpper()
+        {
+            // Arrange
+            string input = "RAILS FOR PYTHON DEVELOPERS 20MIN";
+            // Act
+            var output = _target.Parse(input);
+            // Assert
+            Assert.Equal(20, output.Duration);
+            Assert.Equal("RAILS FOR PYTHON DEVELOPERS", output.Title);
         }
     }
 }

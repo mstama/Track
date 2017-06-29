@@ -24,7 +24,7 @@ namespace UnitTests
 
         [Fact]
         [Trait("Category", _category)]
-        public void ParseLightning2()
+        public void ParseLightningUpper()
         {
             // Arrange
             string input = "RAILS FOR PYTHON DEVELOPERS LIGHTNING";
@@ -50,7 +50,7 @@ namespace UnitTests
 
         [Fact]
         [Trait("Category", _category)]
-        public void ParseMinutes2()
+        public void ParseMinutesUpper()
         {
             // Arrange
             string input = "RAILS FOR PYTHON DEVELOPERS 20MIN";
