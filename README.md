@@ -1,4 +1,8 @@
-# Conference Track Management
+# Track
+
+Conference Track Management
+
+[![Build status](https://ci.appveyor.com/api/projects/status/vkucwbq52709f00y?svg=true)](https://ci.appveyor.com/project/mstama/track)
 
 ### How to build
 
