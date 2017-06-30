@@ -22,7 +22,7 @@ namespace Track.Services
         /// <returns></returns>
         public Talk Parse(string text)
         {
-            if (string.IsNullOrWhiteSpace(text)) return new Talk("", -1);
+            if (string.IsNullOrWhiteSpace(text)) { return new Talk("", -1); }
 
             string[] words = text.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
             // Title

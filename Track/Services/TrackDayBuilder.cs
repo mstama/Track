@@ -20,10 +20,10 @@ namespace Track.Services
         {
             List<TrackDay> trackDays = new List<TrackDay>();
             // Better fitting
-            talks = talks.OrderByDescending(t => t.Duration).ToList();
+            var orderedTalks = talks.OrderByDescending(t => t.Duration).ToList();
             int trackNumber = 0;
             // While there are talks...
-            while (talks.NotEmpty())
+            while (orderedTalks.NotEmpty())
             {
                 // Create track day
                 trackNumber++;
@@ -32,16 +32,16 @@ namespace Track.Services
                 do
                 {
                     var session = morning ? day.Morning : (Session)day.Afternoon;
-                    FillSlots(talks, session, false);
+                    FillSlots(orderedTalks, session, false);
                     morning = !morning;
                 } while (!morning);
                 trackDays.Add(day);
                 //Have to deal with extended.
-                if (talks.Sum(t => t.Duration) <= trackDays.Sum(t => t.Afternoon.CalculatedAvailableMinutes(true)))
+                if (orderedTalks.Sum(t => t.Duration) <= trackDays.Sum(t => t.Afternoon.CalculatedAvailableMinutes(true)))
                 {
                     foreach (var trackDay in trackDays)
                     {
-                        FillSlots(talks, trackDay.Afternoon, true);
+                        FillSlots(orderedTalks, trackDay.Afternoon, true);
                     }
                 }
             }

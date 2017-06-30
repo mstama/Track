@@ -21,7 +21,7 @@ namespace Track.Services
         /// <returns></returns>
         public Talk Parse(string text)
         {
-            if (string.IsNullOrWhiteSpace(text)) return new Talk("", -1);
+            if (string.IsNullOrWhiteSpace(text)) { return new Talk("", -1); }
 
             var result = _talkExpression.Matches(text);
             int duration = result[0].Groups["Duration"].Value.Equals(_lightning, StringComparison.OrdinalIgnoreCase) ? 15 : int.Parse(result[0].Groups["Duration"].Value);

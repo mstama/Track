@@ -126,7 +126,7 @@ namespace Track.Models
         /// <returns></returns>
         protected bool CheckConstraint(Talk talk, bool extended)
         {
-            if (talk == null) return false;
+            if (talk == null) { return false; }
             var end = StartTime.AddMinutes(TotalDuration + talk.Duration);
             return extended ? end <= EndTimeExtended : end <= EndTime;
         }

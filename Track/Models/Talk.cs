@@ -28,7 +28,7 @@
 
         public override string ToString()
         {
-            return Duration != 15 ? string.Format("{0} {1}min", Title, Duration) : string.Format("{0} lightning", Title, Duration);
+            return Duration != 15 ? string.Format("{0} {1}min", Title, Duration) : string.Format("{0} lightning", Title);
         }
     }
 }
