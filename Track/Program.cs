@@ -8,7 +8,7 @@ using Track.Extensions;
 
 namespace Track
 {
-    internal class Program
+    internal static class Program
     {
         private static ITalkParser _parser;
         private static ITrackDayBuilder _sessionBuilder;
