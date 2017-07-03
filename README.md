@@ -4,6 +4,7 @@ Conference Track Management
 
 [![Build status](https://ci.appveyor.com/api/projects/status/vkucwbq52709f00y?svg=true)](https://ci.appveyor.com/project/mstama/track)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cd3657c3394c4f1e9df995017cdaa600)](https://www.codacy.com/app/marcostamashiro/Track?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mstama/Track&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/mstama/Track.svg?branch=master)](https://travis-ci.org/mstama/Track)
 
 ### How to build
 
