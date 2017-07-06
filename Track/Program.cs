@@ -10,11 +10,11 @@ namespace Track
 {
     internal static class Program
     {
-        private static ITalkParser _parser;
-        private static ITrackDayBuilder _sessionBuilder;
+        private static readonly ITalkParser _parser;
+        private static readonly ITrackDayBuilder _sessionBuilder;
 
         // Composition root
-        private static void Init()
+        static Program()
         {
             _parser = new TalkRegexParser();
             _sessionBuilder = new TrackDayBuilder();
@@ -22,8 +22,6 @@ namespace Track
 
         private static void Main(string[] args)
         {
-            Init();
-
             if (args.Length == 0)
             {
                 Console.WriteLine("Input file required!");
