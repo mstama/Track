@@ -33,7 +33,7 @@ namespace Track
             if (!File.Exists(filePath)) { Console.WriteLine("File does not exist!"); }
             Console.WriteLine("Processing file {0}.", args[0]);
             var lines = File.ReadLines(filePath);
-            List<Talk> talks = new List<Talk>();
+            var talks = new List<Talk>();
 
             foreach (var line in lines)
             {
@@ -41,8 +41,8 @@ namespace Track
                 // Check returned talk
                 talks.AddCheck(talk);
             }
-            var sessions = _sessionBuilder.Build(talks);
-            foreach (var session in sessions)
+
+            foreach (var session in _sessionBuilder.Build(talks))
             {
                 Console.WriteLine(session);
             }

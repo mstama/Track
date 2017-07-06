@@ -16,13 +16,7 @@ namespace Track.Extensions
         /// <returns></returns>
         public static string ReplaceInsensitive(this string input, string oldValue, string newValue)
         {
-            string result = Regex.Replace(
-                input,
-                Regex.Escape(oldValue),
-                newValue.Replace("$", "$$"),
-                RegexOptions.IgnoreCase
-            );
-            return result;
+            return Regex.Replace(input, Regex.Escape(oldValue), newValue.Replace("$", "$$"), RegexOptions.IgnoreCase);
         }
     }
 }

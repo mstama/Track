@@ -18,7 +18,7 @@ namespace Track.Services
         /// <returns></returns>
         public IList<TrackDay> Build(IList<Talk> talks)
         {
-            List<TrackDay> trackDays = new List<TrackDay>();
+            var trackDays = new List<TrackDay>();
             // Better fitting
             var orderedTalks = talks.OrderByDescending(t => t.Duration).ToList();
             int trackNumber = 0;
@@ -27,7 +27,7 @@ namespace Track.Services
             {
                 // Create track day
                 trackNumber++;
-                TrackDay day = new TrackDay(trackNumber.ToString());
+                var day = new TrackDay(trackNumber.ToString());
                 bool morning = true;
                 do
                 {
