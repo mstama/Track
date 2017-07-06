@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Text;
+using System.Globalization;
 
 namespace Track.Models
 {
@@ -112,7 +113,7 @@ namespace Track.Models
             var start = StartTime;
             foreach (var talk in Talks)
             {
-                text.Append(string.Format("{0:hh:mmtt} {1}\n", start, talk));
+                text.AppendFormat("{0} {1}\n", start.ToString("hh:mmtt",CultureInfo.InvariantCulture), talk);
                 start = start.AddMinutes(talk.Duration);
             }
             return text.ToString();

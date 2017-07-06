@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Track.Models
 {
@@ -16,7 +17,7 @@ namespace Track.Models
         {
             var text = base.ToString();
             var networkingTime = StartTime.AddMinutes(TotalDuration);
-            return string.Format("{0}{1:hh:mmtt} Networking Event\n", text, networkingTime);
+            return string.Format("{0}{1} Networking Event\n", text, networkingTime.ToString(":hh:mmtt",CultureInfo.InvariantCulture));
         }
     }
 }

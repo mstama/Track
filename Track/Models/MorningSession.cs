@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Track.Models
 {
@@ -16,7 +17,7 @@ namespace Track.Models
         {
             var text = base.ToString();
             var lunchTime = StartTime.AddMinutes(TotalDuration);
-            return string.Format("{0}{1:hh:mmtt} Lunch\n", text, lunchTime);
+            return string.Format("{0}{1} Lunch\n", text, lunchTime.ToString("hh:mmtt",CultureInfo.InvariantCulture));
         }
     }
 }
