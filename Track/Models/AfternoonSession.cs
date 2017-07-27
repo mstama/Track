@@ -17,7 +17,7 @@ namespace Track.Models
         {
             var text = base.ToString();
             var networkingTime = StartTime.AddMinutes(TotalDuration);
-            return string.Format("{0}{1} Networking Event\n", text, networkingTime.ToString(":hh:mmtt",CultureInfo.InvariantCulture));
+            return string.Format("{0}{1} Networking Event\n", text, networkingTime.ToString("hh:mmtt",CultureInfo.InvariantCulture));
         }
     }
 }
